@@ -1,0 +1,20 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="0">
+            <!-- Add Controls for Previewer Here -->
+			<Grid RowDefinitions="80" ColumnDefinitions="200" Background="AliceBlue">
+				<TextBlock Text="Hello12312312312312312312312312123123123123" />
+			</Grid>
+			
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+	<Style Selector="TextBlock">
+		<Setter Property="TextWrapping" Value="1"></Setter>
+		<Setter Property="Padding" Value="3"></Setter>
+		<Setter Property="TextAlignment" Value="Center"></Setter>
+		<Setter Property="VerticalAlignment" Value="Center"></Setter>
+	</Style>
+</Styles>

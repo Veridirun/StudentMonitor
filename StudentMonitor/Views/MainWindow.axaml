@@ -1,0 +1,106 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:StudentMonitor.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="using:StudentMonitor.Converters"
+		xmlns:stud="using:StudentMonitor.Models"
+        mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="800"
+		Width="700" Height="800"
+        x:Class="StudentMonitor.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="StudentMonitor">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Window.Resources>
+		<local:ColorConverter x:Key="ColorConverter"/>
+	</Window.Resources>
+
+	<Grid Background="Bisque" ColumnDefinitions="*" RowDefinitions="1*,4*,1*,1*,1*,1*">
+		<Grid Grid.Row="0" ColumnDefinitions="2*,1*,1*,1*,1*,1*">
+			<Grid.Styles>
+				<StyleInclude Source="/Assets/TextBlockStyles.axaml"></StyleInclude>
+			</Grid.Styles>
+			<TextBlock Grid.Column="0">ФИО</TextBlock>
+			<TextBlock Grid.Column="1">Виуальное программирование</TextBlock>
+			<TextBlock Grid.Column="2">Архитектура ЭВМ</TextBlock>
+			<TextBlock Grid.Column="3">Вычислительная математика</TextBlock>
+			<TextBlock Grid.Column="4">Теория вероятностей</TextBlock>
+			<TextBlock Grid.Column="5">Средний балл</TextBlock>
+		</Grid>
+		<ListBox Grid.Row="1" Items="{Binding Students}" Background="Beige" SelectedIndex="{Binding Index}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid ColumnDefinitions="2*,1*,1*,1*,1*,1*" RowDefinitions="30">
+						<Grid.Styles>
+							<StyleInclude Source="/Assets/TextBlockStyles.axaml"></StyleInclude>
+						</Grid.Styles>
+						<TextBlock Grid.Column="0" Background="BurlyWood" Text="{Binding Name}"></TextBlock>
+						<TextBlock Name="Subject0" Grid.Column="1" Background="{Binding Subject0, Converter={StaticResource ColorConverter}}" Text="{Binding Subject0}"></TextBlock>
+						<TextBlock Name="Subject1" Grid.Column="2" Background="{Binding Subject1, Converter={StaticResource ColorConverter}}" Text="{Binding Subject1}"></TextBlock>
+						<TextBlock Name="Subject2" Grid.Column="3" Background="{Binding Subject2, Converter={StaticResource ColorConverter}}" Text="{Binding Subject2}"></TextBlock>
+						<TextBlock Name="Subject3" Grid.Column="4" Background="{Binding Subject3, Converter={StaticResource ColorConverter}}" Text="{Binding Subject3}"></TextBlock>
+						<TextBlock Name="Average" Grid.Column="5" Background="{Binding Average_Score, Converter={StaticResource ColorConverter}}" Text="{Binding Average_Score}"></TextBlock>
+					</Grid>
+					
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<Grid Grid.Row="2" ColumnDefinitions="2*,1*,1*,1*,1*,1*">
+			<Grid.Styles>
+				<StyleInclude Source="/Assets/TextBlockStyles.axaml"></StyleInclude>
+			</Grid.Styles>
+			<TextBlock Grid.Column="0">Средний балл</TextBlock>
+			<TextBlock Name="Average0" Grid.Column="1" Text="{Binding Average0}" Background="{Binding Color0}"></TextBlock>
+			<TextBlock Name="Average1" Grid.Column="2" Text="{Binding Average1}" Background="{Binding Color1}"></TextBlock>
+			<TextBlock Name="Average2" Grid.Column="3" Text="{Binding Average2}" Background="{Binding Color2}"></TextBlock>
+			<TextBlock Name="Average3" Grid.Column="4" Text="{Binding Average3}" Background="{Binding Color3}"></TextBlock>
+			<TextBlock Name="Average4" Grid.Column="5" Text="{Binding Average4}" Background="{Binding Color4}"></TextBlock>
+		</Grid>
+		<Grid Grid.Row="3" ColumnDefinitions="2*,1*,1*,1*,1*,1*">
+			<Grid.Styles>
+				<StyleInclude Source="/Assets/ComboBoxStyles.axaml"></StyleInclude>
+			</Grid.Styles>
+			<TextBox Name="StudName" Margin="5" Grid.Column="0" Text="{Binding StudName}"/>
+			<ComboBox Grid.Column="1" SelectedIndex="{Binding Score0}">
+				<TextBlock>0</TextBlock>
+				<TextBlock>1</TextBlock>
+				<TextBlock>2</TextBlock>
+			</ComboBox>
+			<ComboBox Grid.Column="2" SelectedIndex="{Binding Score1}">
+				<TextBlock>0</TextBlock>
+				<TextBlock>1</TextBlock>
+				<TextBlock>2</TextBlock>
+			</ComboBox>
+			<ComboBox Grid.Column="3" SelectedIndex="{Binding Score2}">
+				<TextBlock>0</TextBlock>
+				<TextBlock>1</TextBlock>
+				<TextBlock>2</TextBlock>
+			</ComboBox>
+			<ComboBox Grid.Column="4" SelectedIndex="{Binding Score3}">
+				<TextBlock>0</TextBlock>
+				<TextBlock>1</TextBlock>
+				<TextBlock>2</TextBlock>
+			</ComboBox>
+		</Grid>
+		<Grid Grid.Row="4" ColumnDefinitions="1*,1*">
+			<Grid.Styles>
+				<StyleInclude Source="/Assets/ButtonStyles.axaml"></StyleInclude>
+			</Grid.Styles>
+			<Button Name="AddStudent" Grid.Column="0" Command="{Binding AddStudent}">Добавить студента</Button>
+			<Button Name="RemoveStudent" Grid.Column="1" Command="{Binding RemoveStudent}">Удалить студента</Button>
+		</Grid>
+		<Grid Grid.Row="5" ColumnDefinitions="1*,1*">
+			<Grid.Styles>
+				<StyleInclude Source="/Assets/ButtonStyles.axaml"></StyleInclude>
+			</Grid.Styles>
+			<Button Name="SaveFile" Grid.Column="0" Command="{Binding SaveFile}">Сохранить</Button>
+			<Button Name="LoadFile" Grid.Column="1" Command="{Binding LoadFile}">Загрузить</Button>
+		</Grid>
+		
+	</Grid>
+
+</Window>
